@@ -1,0 +1,13 @@
+NAIJAPIN iOS SETUP
+
+1. On a Mac, open Xcode.
+2. File > New > Project > iOS > App.
+3. Product Name: NaijaPin
+4. Interface: SwiftUI
+5. Language: Swift
+6. Replace the generated Swift files with the files in NaijaPin/.
+7. Target > Info: add Privacy - Location When In Use Usage Description.
+   Value: NaijaPin uses your location to create accurate digital address pins.
+8. Choose your Apple Developer Team and a unique Bundle Identifier.
+9. Test on an iPhone.
+10. Product > Archive > Distribute App > App Store Connect.

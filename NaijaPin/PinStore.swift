@@ -1,0 +1,2 @@
+import Foundation
+final class PinStore:ObservableObject { @Published var pins:[Pin]=[]; private let key="NaijaPin.pins"; init(){load()}; func add(_ p:Pin){pins.insert(p,at:0);save()}; func delete(at o:IndexSet){pins.remove(atOffsets:o);save()}; private func load(){if let d=UserDefaults.standard.data(forKey:key),let p=try? JSONDecoder().decode([Pin].self,from:d){pins=p}}; private func save(){if let d=try? JSONEncoder().encode(pins){UserDefaults.standard.set(d,forKey:key)}} }
