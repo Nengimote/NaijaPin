@@ -1,1 +1,26 @@
-
+workflows:
+  ios-native-workflow:
+    name: iOS Native Build
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: Codemagic
+    environment:
+      ios_signing:
+        distribution_type: ad_hoc
+      vars:
+        XCODE_WORKSPACE: "NaijaPin.xcworkspace"
+        XCODE_SCHEME: "NaijaPin"
+      xcode: latest
+    scripts:
+      - name: Set up code signing
+        script: |
+          xcode-project use-profiles
+      - name: Build iOS App
+        script: |
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
